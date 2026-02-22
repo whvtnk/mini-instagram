@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 
@@ -7,7 +8,6 @@ SECRET_KEY = 'djang1o-insecur4e-vasha-4pomdz-lkbyy9fz-cbuewk-with-3symvols'
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 
-# Қосымшалар
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,8 +26,9 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # Ең жоғарыда тұруы керек
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,19 +78,13 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-# CORS - Фронтендке (React) рұқсат беру
 CORS_ALLOW_ALL_ORIGINS = True 
 
-# Database (PostgreSQL)
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dj_back',
-        'USER': 'postgres',
-        'PASSWORD': 'admin123',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL', 'postgresql://postgres:admin123@127.0.0.1:5432/dj_back'),
+        conn_max_age=600
+    )
 }
 
 AUTH_USER_MODEL = 'users.User'
