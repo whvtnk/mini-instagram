@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings # AUTH_USER_MODEL үшін дұрыс жол
+from django.conf import settings
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posts')
@@ -31,3 +32,21 @@ class Comment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+class Note(models.Model):
+    """Заметки (Қысқаша мәтін, мысалы статустар)"""
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='notes')
+    text = models.CharField(max_length=60)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.author.username} - заметкасы"
+
+class Story(models.Model):
+    """Сторис (Сурет немесе видео, 24 сағатқа арналған)"""
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='stories')
+    image = models.ImageField(upload_to='stories/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.author.username} - сторисі"

@@ -2,11 +2,12 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import viewsets, permissions
 from django.shortcuts import get_object_or_404
 
 from users.models import Follow 
-from .models import Post, Media, Like, Comment
-from .serializers import PostSerializer, CommentSerializer
+from .models import Post, Media, Like, Comment, Note, Story
+from .serializers import PostSerializer, CommentSerializer, NoteSerializer, StorySerializer
 from rest_framework.pagination import PageNumberPagination
 
 @api_view(['GET', 'POST'])
@@ -129,3 +130,22 @@ def user_feed(request):
     posts = Post.objects.filter(author_id__in=following_ids)
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
+
+# ================= ЖАҢА: ЗАМЕТКИ ЖӘНЕ СТОРИС VIEWS =================
+
+class NoteViewSet(viewsets.ModelViewSet):
+    queryset = Note.objects.all().order_by('-created_at')
+    serializer_class = NoteSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly] # Тек тіркелгендер жаза алады, басқалар тек оқиды
+
+    def perform_create(self, serializer):
+        # Заметканы сақтаған кезде, авторы ретінде қазіргі юзерді автоматты түрде тіркейміз
+        serializer.save(author=self.request.user)
+
+class StoryViewSet(viewsets.ModelViewSet):
+    queryset = Story.objects.all().order_by('-created_at')
+    serializer_class = StorySerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)

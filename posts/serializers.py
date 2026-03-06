@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post, Media, Comment, Like
+from .models import Post, Media, Comment, Like, Note, Story
 
 class MediaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,3 +37,20 @@ class PostSerializer(serializers.ModelSerializer):
         if request and request.user.is_authenticated:
             return Like.objects.filter(user=request.user, post=obj).exists()
         return False
+    
+# ================= ЖАҢА: ЗАМЕТКИ ЖӘНЕ СТОРИС SERIALIZERS =================
+
+class NoteSerializer(serializers.ModelSerializer):
+    # Заметканы кім жазғанын қолмен жазбау үшін, оны автоматты түрде аламыз
+    author = serializers.ReadOnlyField(source='author.username')
+
+    class Meta:
+        model = Note
+        fields = ['id', 'author', 'text', 'created_at']
+
+class StorySerializer(serializers.ModelSerializer):
+    author = serializers.ReadOnlyField(source='author.username')
+
+    class Meta:
+        model = Story
+        fields = ['id', 'author', 'image', 'created_at']
