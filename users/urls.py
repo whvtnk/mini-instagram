@@ -5,7 +5,10 @@ urlpatterns = [
     path('register/', views.register_user, name='register'),
     path('me/', views.get_my_profile, name='my-profile'),
     path('profile/<int:user_id>/', views.get_user_profile, name='user-profile'),
+    path('all/', views.get_all_users, name='get-all-users'),
     
+    
+
     # Follow логикасы (POST және DELETE қабылдайды)
     path('follow/<int:user_id>/', views.manage_follow, name='manage-follow'), 
     

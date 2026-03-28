@@ -99,3 +99,16 @@ def get_following(request, user_id):
     following = [f.followee for f in follows]
     serializer = UserSerializer(following, many=True)
     return Response(serializer.data)
+
+
+# Барлық юзерлерді шығаратын жаңа функция
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_all_users(request):
+    from django.contrib.auth import get_user_model
+    from .serializers import UserSerializer # Егер сенде сериализатордың аты басқаша болса (мысалы UserProfileSerializer), соған ауыстыр
+    
+    User = get_user_model()
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)

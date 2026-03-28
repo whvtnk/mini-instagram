@@ -22,7 +22,6 @@ urlpatterns = [
     }), name='note-detail'),
 
     path('stories/', views.StoryViewSet.as_view({'get': 'list', 'post': 'create'}), name='story-list'),
-    path('stories/<int:pk>/', views.StoryViewSet.as_view({
         'get': 'retrieve', 
         'put': 'update', 
         'patch': 'partial_update', 

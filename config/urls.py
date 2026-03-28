@@ -21,6 +21,6 @@ urlpatterns = [
     path('api/posts/', include('posts.urls')),
 ]
 
-# Медиа файлдар (суреттер)
+# Медиа файлдар (суреттер)  
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
