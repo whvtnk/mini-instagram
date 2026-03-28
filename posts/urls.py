@@ -12,7 +12,7 @@ urlpatterns = [
     path('<int:post_id>/comments/', views.comment_list_create, name='comment-list'),
     path('comments/<int:pk>/', views.comment_detail, name='comment-detail'),
 
-  # ================= ЖАҢА: ЗАМЕТКИ ЖӘНЕ СТОРИС =================
+    # ================= ЖАҢА: ЗАМЕТКИ ЖӘНЕ СТОРИС =================
     path('notes/', views.NoteViewSet.as_view({'get': 'list', 'post': 'create'}), name='note-list'),
     path('notes/<int:pk>/', views.NoteViewSet.as_view({
         'get': 'retrieve', 
@@ -22,6 +22,9 @@ urlpatterns = [
     }), name='note-detail'),
 
     path('stories/', views.StoryViewSet.as_view({'get': 'list', 'post': 'create'}), name='story-list'),
+    
+    # МІНЕ, ОСЫ ЖЕРДІҢ БАСЫ ӨШІП ҚАЛҒАН БОЛАТЫН:
+    path('stories/<int:pk>/', views.StoryViewSet.as_view({
         'get': 'retrieve', 
         'put': 'update', 
         'patch': 'partial_update', 
