@@ -19,7 +19,7 @@ def post_list_create(request):
         paginator.page_size = 5 # Бір бетте 5 пост шығады
         paginated_posts = paginator.paginate_queryset(posts, request)
         
-        serializer = PostSerializer(paginated_posts, many=True)
+        serializer = PostSerializer(posts, many=True, context={'request': request})
         return paginator.get_paginated_response(serializer.data)
 
     elif request.method == 'POST':
@@ -46,7 +46,7 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
 
     if request.method == 'GET':
-        serializer = PostSerializer(post)
+        serializer = PostSerializer(post, context={'request': request})
         return Response(serializer.data)
 
     if post.author != request.user:
@@ -128,7 +128,7 @@ def comment_detail(request, pk):
 def user_feed(request):
     following_ids = Follow.objects.filter(follower=request.user).values_list('followee_id', flat=True)
     posts = Post.objects.filter(author_id__in=following_ids)
-    serializer = PostSerializer(posts, many=True)
+    serializer = PostSerializer(posts, many=True, context={'request': request})
     return Response(serializer.data)
 
 # ================= ЖАҢА: ЗАМЕТКИ ЖӘНЕ СТОРИС VIEWS =================
