@@ -7,21 +7,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'djang1o-insecur4e-vasha-4pomdz-lkbyy9fz-cbuewk-with-3symvols'
 DEBUG = True
 ALLOWED_HOSTS = ['*']
-
 INSTALLED_APPS = [
+    'daphne',  # ← БАС ЖЕРГЕ ҚОЙ
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-    
+    'channels',
     'users',
     'posts',
+    'chat',
 ]
 
 
@@ -86,6 +86,21 @@ DATABASES = {
         conn_max_age=600
     )
 }
+
+
+# Channels
+ASGI_APPLICATION = 'config.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+        },
+    },
+}
+
+
 
 AUTH_USER_MODEL = 'users.User'
 

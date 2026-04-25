@@ -21,7 +21,7 @@ def register_user(request):
 @permission_classes([IsAuthenticated])
 def get_my_profile(request):
     """Қазіргі кіріп тұрған пайдаланушы (Авторизация арқылы)"""
-    serializer = UserProfileSerializer(request.user)
+    serializer = UserProfileSerializer(request.user, context={'request': request})
     return Response(serializer.data)
 
 @api_view(['GET'])
@@ -29,7 +29,7 @@ def get_my_profile(request):
 def get_user_profile(request, user_id):
     """Басқа біреудің профилін көру"""
     user = get_object_or_404(User, id=user_id)
-    serializer = UserProfileSerializer(user)
+    serializer = UserProfileSerializer(user, context={'request': request})
     return Response(serializer.data)
 
 # --- ӨЗГЕРТІЛГЕН FOLLOW ЛОГИКАСЫ ---

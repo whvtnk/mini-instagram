@@ -19,6 +19,9 @@ urlpatterns = [
     
     # 3. Posts қосымшасы (Posts, Likes, Comments, Feed)
     path('api/posts/', include('posts.urls')),
+
+    path('api/chat/', include('chat.urls')),
+    
 ]
 
 # Медиа файлдар (суреттер)  
