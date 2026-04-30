@@ -8,7 +8,7 @@ SECRET_KEY = 'djang1o-insecur4e-vasha-4pomdz-lkbyy9fz-cbuewk-with-3symvols'
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
-    'daphne',  # ← БАС ЖЕРГЕ ҚОЙ
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
