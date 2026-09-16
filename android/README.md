@@ -25,7 +25,7 @@ private const val BASE_URL = "http://192.168.X.X:8000/"
 | `AddPostActivity.kt` | Пост қосу |
 | `CommentsActivity.kt` | Комментарийлер |
 
-## 🔧 Тәуелділіктер
+## Тәуелділіктер
 
 ```kotlin
 // Retrofit
