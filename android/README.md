@@ -1,6 +1,6 @@
-# 📱 Android — Kotlin
+# Android — Kotlin
 
-## ⚙️ Баптау
+## Баптау
 
 `ApiClient.kt` ішінде URL өзгерт:
 
@@ -12,7 +12,7 @@ private const val BASE_URL = "http://10.0.2.2:8000/"
 private const val BASE_URL = "http://192.168.X.X:8000/"
 ```
 
-## 📁 Негізгі файлдар
+## Негізгі файлдар
 
 | Файл | Сипаттама |
 |------|-----------|

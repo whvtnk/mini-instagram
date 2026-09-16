@@ -1,6 +1,6 @@
-# 🔧 Backend — Django REST API
+# Backend — Django REST API
 
-## 🚀 Іске қосу
+## Іске қосу
 
 ```bash
 python -m venv venv
@@ -10,7 +10,7 @@ python manage.py migrate
 python manage.py runserver 0.0.0.0:8000
 ```
 
-## 📡 API Endpoints
+## API Endpoints
 
 ### Auth
 | Method | URL | Description |
@@ -41,7 +41,7 @@ python manage.py runserver 0.0.0.0:8000
 ### Direct (WebSocket)
 ws://host:8000/ws/chat/{user_id}/?token=JWT_TOKEN
 
-## 🗄️ Модельдер
+## Модельдер
 User → Post → Media
 ↓
 Comment
