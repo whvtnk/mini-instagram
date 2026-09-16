@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <!-- Бөтен адамның хабары (сол жақ) -->
+    <TextView
+        android:id="@+id/tvMessageOther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="#EFEFEF"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:layout_marginBottom="4dp"/>
+
+    <!-- Өз хабарың (оң жақ) -->
+    <TextView
+        android:id="@+id/tvMessageMine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="#3897F0"
+        android:textColor="#FFFFFF"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:layout_marginBottom="4dp"/>
+
+</LinearLayout>

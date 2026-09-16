@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_marginBottom="8dp">
+
+    <!-- Жоғарғы қатар: аватар + username -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/ivPostAvatar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher_round"/>
+
+        <TextView
+            android:id="@+id/tvPostUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginStart="10dp"/>
+
+    </LinearLayout>
+
+    <!-- Пост суреті -->
+    <ImageView
+        android:id="@+id/ivPostImage"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:background="#EFEFEF"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="8dp">
+
+        <!-- Лайк батырмасы -->
+        <ImageButton
+            android:id="@+id/btnLike"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_heart_outline"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/tvLikesCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginStart="6dp"/>
+
+        <!-- Комментарий батырмасы -->
+        <ImageButton
+            android:id="@+id/btnComment"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_comment"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/tvCommentsCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginStart="6dp"/>
+
+    </LinearLayout>
+
+    <!-- Caption -->
+    <TextView
+        android:id="@+id/tvCaption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="12dp"
+        android:textSize="14sp"
+        android:textColor="#000000"/>
+
+
+</LinearLayout>

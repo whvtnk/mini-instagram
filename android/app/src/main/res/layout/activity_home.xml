@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FAFAFA">
+
+    <!-- Toolbar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#FFFFFF"
+        android:elevation="4dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mini Instagram"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <ImageButton
+            android:id="@+id/btnProfile"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@mipmap/ic_launcher_round"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerCrop"/>
+
+    </LinearLayout>
+
+    <!-- Сторис -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvStories"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#FFFFFF"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DBDBDB"/>
+
+    <!-- Посттар -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPosts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="#000000"
+        app:itemTextColor="#000000"
+        xmlns:app="http://schemas.android.com/apk/res-auto"/>
+
+</LinearLayout>
