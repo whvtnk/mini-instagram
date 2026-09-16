@@ -1,59 +1,8 @@
-# Mini Instagram
+# 🔧 Backend — Django REST API
 
-Instagram-тың Android + Django нұсқасы.
+## 🚀 Іске қосу
 
-![Home Screen](screenshots/home.png)
-
-## Технологиялар
-
-**Backend:**
-- Python / Django REST Framework
-- PostgreSQL
-- JWT аутентификация
-- Django Channels (WebSocket)
-- Redis
-
-**Android:**
-- Kotlin
-- Retrofit2 + OkHttp
-- Glide
-- RecyclerView
-- WebSocket (Direct Messages)
-
-## Функциялар
-
-- ✅ Тіркелу / Кіру (JWT)
-- ✅ Посттар лентасы
-- ✅ Сторис
-- ✅ Лайк жүйесі (анимациямен)
-- ✅ Комментарийлер
-- ✅ Пост қосу (галереядан)
-- ✅ Профиль беті
-- ✅ Іздеу
-- ✅ Direct Messages (WebSocket)
-- ✅ Bottom Navigation
-- ✅ Pull-to-refresh
-- ✅ Жарнама блогы
-
-## 📱 Скриншоттар
-
-| Login | Registration | Home |
-|-------|-------------|------|
-| ![](screenshots/login.png) | ![](screenshots/registration.png) | ![](screenshots/home.png) |
-
-| Stories | Жарнама | Add Post |
-|---------|---------|----------|
-| ![](screenshots/stories.png) | ![](screenshots/reklama.png) | ![](screenshots/add_post.png) |
-
-| Comments | Profile | Direct |
-|----------|---------|--------|
-| ![](screenshots/comments1.png) | ![](screenshots/profile.png) | ![](screenshots/direct.png) |
-
-## Іске қосу
-
-### Backend:
 ```bash
-cd insta_project
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
@@ -61,8 +10,41 @@ python manage.py migrate
 python manage.py runserver 0.0.0.0:8000
 ```
 
-### Android:
+## 📡 API Endpoints
 
-## 👤 Автор
+### Auth
+| Method | URL | Description |
+|--------|-----|-------------|
+| POST | `/api/users/register/` | Тіркелу |
+| POST | `/api/token/` | Логин → JWT токен |
 
-**whvtnk** — 3-курс CS студенті, Қазақстан
+### Posts
+| Method | URL | Description |
+|--------|-----|-------------|
+| GET | `/api/posts/` | Барлық посттар |
+| POST | `/api/posts/` | Жаңа пост |
+| POST | `/api/posts/{id}/like/` | Лайк |
+| DELETE | `/api/posts/{id}/like/` | Лайк алу |
+
+### Comments
+| Method | URL | Description |
+|--------|-----|-------------|
+| GET | `/api/posts/{id}/comments/` | Комментарийлер |
+| POST | `/api/posts/{id}/comments/` | Комментарий жазу |
+
+### Stories
+| Method | URL | Description |
+|--------|-----|-------------|
+| GET | `/api/posts/stories/` | Сторис |
+| POST | `/api/posts/stories/` | Жаңа сторис |
+
+### Direct (WebSocket)
+ws://host:8000/ws/chat/{user_id}/?token=JWT_TOKEN
+
+## 🗄️ Модельдер
+User → Post → Media
+↓
+Comment
+Like
+Story
+Message (WebSocket chat)
